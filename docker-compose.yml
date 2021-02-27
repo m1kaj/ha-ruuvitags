@@ -1,0 +1,29 @@
+services:
+  homeassistant:
+    image: homeassistant/home-assistant:stable
+    init: true
+    network_mode: host
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 20s
+        max_attempts: 3
+        window: 60s
+    volumes:
+      - ${HOME}/.homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - ruuvi-server
+  ruuvi-server:
+    build:
+      context: .
+      network: host
+    image: ruuvi-server:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 20s
+    network_mode: host
+    privileged: true
