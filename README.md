@@ -15,11 +15,12 @@ only on Ubuntu 20.04.
 - use Ruuvi Station app in phone to set up tags and collects MAC addresses
 - edit tags in `ruuvi_server.py` and change port if needed (default=5150)
 - `docker-compose up -d`
+- verify data is available: `http://localhost:5150/ruuvitags` or `http://localhost:5150/ruuvitag/<mac>`
 - visit `http://<host>:8123` to complete Home Assistant onboarding
 - edit `~/.homeassistant/configuration.yaml` to add sensors for RuuviTags
 
 <details>
-<summary>exaple config</summary>
+<summary>example config</summary>
 <p>
 
 ```yaml
